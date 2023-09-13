@@ -1,0 +1,12 @@
+name: single
+title: single
+username: berj
+account: berj
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9853207
+bundleId: 7679613
+url: https://berj.shinyapps.io/single/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
