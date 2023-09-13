@@ -1,0 +1,63 @@
+---
+title: "Gapminder Dataset Exploration And Correlation Between Inequality, Life Expectancy, and Sugar Consumption"
+author: "Berj Dekramanjian"
+date: "14th of September 2023"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(ggplot2))
+data1 <- read.csv("data.csv") %>%  filter(country %in% c("Argentina", "Lebanon", "Spain"))
+
+```
+
+## Introduction
+
+The App is a quick way to compare different countries, in regards to inequality, sugar consumption and life expectancy from the early 60's till 2018.
+
+The app also helps show the correlation between the two data sets the user chooses and shows the regression coefficient between the two variable in the years and locations selected
+
+## The input selection
+
+The sidebar allows you to select:
+
+* 3 countries each selected through a slide down menu
+* 2 data sets, each selected through a slide down menu
+* The range of years required, where you can add the minimum and maximum years in the slider
+
+## First Tab
+Includes two line graphs to show evolution of selected variables in specified countries.
+
+```{r echo= TRUE, message=FALSE, warning=FALSE, fig.cap="Line Graph of Life Expectancy", fig.width=6, fig.height=3}
+
+ggplot(data1, aes(x = year, lex , color = country)) +
+      geom_line() +
+      labs(title = paste("Line Graph of lex"),
+           x = "Year",
+           y = "Life Expectencey")
+
+```
+
+## Second Tab 
+Includes another plot to show the Regression of two selected variables using the code below, as well as displaying the regression coefficient
+
+```{r echo= TRUE, message=FALSE, warning=FALSE, fig.cap= "Regression of Life Expectancy and Inequality", fig.width=6, fig.height=3}
+ggplot(data1, aes(x = gini , lex)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(x = "Inequality", y = "Life Ex")
+```
+
+## Third Tab 
+
+Has Descriptions of data shorthands and meaning,  you can see how it looks in-app below
+![Tab](C:/Users/U176055/Downloads/Final_DDO/tab.png)
+
+
+## Links
+
+* The app can be found [here](https://berj.shinyapps.io/single/)
+* The data can be found [here](https://www.gapminder.org/data/)
+* The code can be found [here](https://github.com/BerjDek/Final_DDO/tree/main/)
